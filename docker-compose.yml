@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # Node.js REST API
+  api:
+    build:
+      context: ./services/api
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - ./services/api:/app
+    command: npm run dev
+    networks:
+      - starter-kit
+
+  # Go Microservice
+  go-service:
+    build:
+      context: ./services/go
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ENV=development
+    volumes:
+      - ./services/go:/app
+    networks:
+      - starter-kit
+
+  # Python CLI (for testing/scheduling)
+  python:
+    build:
+      context: ./services/python
+      dockerfile: Dockerfile
+    volumes:
+      - ./services/python:/app
+    networks:
+      - starter-kit
+    command: python -m click_cli --help
+
+  # PostgreSQL Database (optional, for future use)
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=starter
+      - POSTGRES_PASSWORD=starter123
+      - POSTGRES_DB=starterdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - starter-kit
+
+volumes:
+  postgres_data:
+
+networks:
+  starter-kit:
+    driver: bridge
