@@ -1,0 +1,4 @@
+github.com/gorilla/mux v1.8.1 h1:TuBL49tXwxGEux+VkYKemT/xEo3b8+0EucHoea5XqQ=
+github.com/gorilla/mux v1.8.1/go.mod h1:DVbg23sWSpwHjKqRI6K7JiQ9zeThL0qogcC7uBCVQU=
+github.com/joho/godotenv v1.5.1 h1:7P4SfwW0WfdzbyabqV3EN7BEr4NAPjL2EZQrmMGvE8=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa49RQsS/mPc=
